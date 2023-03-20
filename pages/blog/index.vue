@@ -1,5 +1,8 @@
 <script setup>
 import {convertDate} from "../../utils"
+
+const qc = await queryContent('blog').sort({date: -1}).find();
+
 </script>
 <template>
     <main class="bg-white px-4 pt-16 sm:px-6 lg:px-8 lg:pt-24">
@@ -8,8 +11,8 @@ import {convertDate} from "../../utils"
                 <h2 class="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl"> Recent Posts</h2>
             </div>
         <div class="mt-12 grid gap-16 lg:grid-cols-3 lg:gap-x-5 lg:gapy-12"> 
-            <ContentList path="/blog" v-slot="{list}">
-            <div v-for="article in list" :key="article._path" class="flex flex-col justify-between rounded-lg border border-gray-200 p-4">
+           
+            <div v-for="article in qc" :key="article._path" class="flex flex-col justify-between rounded-lg border border-gray-200 p-4">
                <nuxt-link :href="article._path">
                  <h2 class="text-xl text-gray-900">{{ article.title }}</h2>
                 <p class="mt-3 text-gray-500">{{ article.description }}</p>
@@ -26,7 +29,6 @@ import {convertDate} from "../../utils"
                </div>
                </div>
             </div>
-            </ContentList>
 
         </div>
         </div>
