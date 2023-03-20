@@ -1,3 +1,6 @@
+<script setup>
+import {convertDate} from "../../utils"
+</script>
 <template>
     <main class="bg-white px-4 pt-16 sm:px-6 lg:px-8 lg:pt-24">
         <div class="mx-auto max-w-lg lg:max-w-7xl">
@@ -11,7 +14,17 @@
                  <h2 class="text-xl text-gray-900">{{ article.title }}</h2>
                 <p class="mt-3 text-gray-500">{{ article.description }}</p>
                </nuxt-link>
-               
+               <div class="mt-6"> 
+                <a :href="`?author=${article.author}`" class="text-sm font-medium text-gray-900">
+                    {{ article.author }}
+                </a>
+               <div class="text-sm text-gray-500"> 
+
+                <time datetime="2020-03-16">
+                    {{ convertDate(article.date) }}
+                </time>
+               </div>
+               </div>
             </div>
             </ContentList>
 
